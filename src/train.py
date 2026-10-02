@@ -8,6 +8,7 @@ from sklearn.model_selection import StratifiedKFold
 from src.data import RANDOM_STATE, get_train_test_data
 
 EXPERIMENT_NAME = "Wine-Cultivar-Classification"
+DB_URI = "sqlite:///mlflow.db"
 
 
 def evaluate_cv(model_cls, params, x_train, y_train):
@@ -34,6 +35,7 @@ def evaluate_cv(model_cls, params, x_train, y_train):
 
 def train_and_track():
     """Execute hyperparameter grid evaluation for RF and GBM."""
+    mlflow.set_tracking_uri(DB_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
     x_train, _, y_train, _ = get_train_test_data()
 
