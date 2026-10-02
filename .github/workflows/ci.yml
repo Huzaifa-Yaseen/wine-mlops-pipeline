@@ -9,6 +9,8 @@ on:
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
 
     steps:
       - name: Checkout Code
@@ -28,7 +30,7 @@ jobs:
       - name: Train Models & Register Champion
         run: |
           make train
-          python src/evaluate.py
+          python3 src/evaluate.py
 
       - name: Execute Unit Tests & Quality Gate
         run: make test
