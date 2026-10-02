@@ -11,10 +11,11 @@ lint:
 	flake8 src/ tests/ --max-line-length=100
 
 test:
-	pytest tests/ -v
+	PYTHONPATH=. pytest tests/ -v
 
 train:
-	$(PYTHON) src/train.py
+	PYTHONPATH=. $(PYTHON) src/train.py
+	PYTHONPATH=. $(PYTHON) src/evaluate.py
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
